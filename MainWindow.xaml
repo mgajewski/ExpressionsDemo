@@ -1,0 +1,263 @@
+﻿<Window
+    x:Class="ExpressionsDemo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ExpressionsDemo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Form">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+
+                    <!--  FIELDS  -->
+
+                    <StackPanel
+                        x:Name="field1Enabler"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        IsEnabled="{Binding FormVM.Field1.IsEnabled}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Field1 (string)</TextBlock>
+                            <TextBlock
+                                x:Name="field1Validator"
+                                Margin="20,0,0,0"
+                                Foreground="Red"
+                                Text="INVALID"
+                                Visibility="{Binding FormVM.Field1.HasError, Converter={StaticResource BoolToVis}}" />
+                        </StackPanel>
+                        <TextBox
+                            x:Name="field1"
+                            Height="30"
+                            HorizontalAlignment="Stretch"
+                            FontSize="18"
+                            Text="{Binding FormVM.Field1.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextChanged="field_TextChanged" />
+                    </StackPanel>
+
+                    <StackPanel
+                        x:Name="field2Enabler"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        IsEnabled="{Binding FormVM.Field2.IsEnabled}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Field2 (string)</TextBlock>
+                            <TextBlock
+                                x:Name="field2Validator"
+                                Margin="20,0,0,0"
+                                Foreground="Red"
+                                Text="INVALID"
+                                Visibility="{Binding FormVM.Field2.HasError, Converter={StaticResource BoolToVis}}" />
+                        </StackPanel>
+                        <TextBox
+                            x:Name="field2"
+                            Height="30"
+                            HorizontalAlignment="Stretch"
+                            FontSize="18"
+                            Text="{Binding FormVM.Field2.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextChanged="field_TextChanged" />
+                    </StackPanel>
+
+                    <StackPanel
+                        x:Name="field3Enabler"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        IsEnabled="{Binding FormVM.Field3.IsEnabled}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Field3 (int)</TextBlock>
+                            <TextBlock
+                                x:Name="field3Validator"
+                                Margin="20,0,0,0"
+                                Foreground="Red"
+                                Text="INVALID"
+                                Visibility="{Binding FormVM.Field3.HasError, Converter={StaticResource BoolToVis}}" />
+                        </StackPanel>
+                        <TextBox
+                            x:Name="field3"
+                            Height="30"
+                            HorizontalAlignment="Stretch"
+                            FontSize="18"
+                            Text="{Binding FormVM.Field3.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextChanged="field_TextChanged" />
+                    </StackPanel>
+
+                    <!--  VALIDATION RULES  -->
+
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10,0,0,0"
+                        Background="LightGray">
+                        <StackPanel Margin="30,0">
+                            <TextBlock>Validation rule</TextBlock>
+                            <TextBox
+                                x:Name="validationField1"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10,0,0,0"
+                        Background="LightGray">
+                        <StackPanel Margin="30,0">
+                            <TextBlock>Validation rule</TextBlock>
+                            <TextBox
+                                x:Name="validationField2"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="10,0,0,0"
+                        Background="LightGray">
+                        <StackPanel Margin="30,0">
+                            <TextBlock>Validation rule</TextBlock>
+                            <TextBox
+                                x:Name="validationField3"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+
+                    <!--  ENABLED RULES  -->
+
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Background="LightGray">
+                        <StackPanel Margin="30,0">
+                            <TextBlock>Enabled rule</TextBlock>
+                            <TextBox
+                                x:Name="enabledField1"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Background="LightGray">
+                        <StackPanel Margin="30,0">
+                            <TextBlock>Enabled rule</TextBlock>
+                            <TextBox
+                                x:Name="enabledField2"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Background="LightGray">
+                        <StackPanel Margin="30,0">
+                            <TextBlock>Enabled rule</TextBlock>
+                            <TextBox
+                                x:Name="enabledField3"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalContentAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+
+
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Height="40"
+                        Margin="20"
+                        Click="Button_Click"
+                        Content="Execute rules" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Scripts">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10"
+                        LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Top">Script</TextBlock>
+                        <TextBox
+                            x:Name="Script"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            AcceptsReturn="True"
+                            AcceptsTab="True"
+                            DockPanel.Dock="Top"
+                            HorizontalScrollBarVisibility="Disabled"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                    </DockPanel>
+                    <DockPanel
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10"
+                        LastChildFill="True">
+                        <TextBlock DockPanel.Dock="Top">Result</TextBlock>
+                        <TextBox
+                            x:Name="Result"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            AcceptsReturn="True"
+                            AcceptsTab="True"
+                            DockPanel.Dock="Top"
+                            HorizontalScrollBarVisibility="Disabled"
+                            IsEnabled="False"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                    </DockPanel>
+                    <Button
+                        Grid.Row="1"
+                        Width="100"
+                        Height="30"
+                        Margin="10,5"
+                        HorizontalAlignment="Left"
+                        Click="Button_Click_1"
+                        Content="Evaluate"
+                        DockPanel.Dock="Right" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

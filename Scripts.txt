@@ -1,0 +1,77 @@
+﻿1. Zdeklarowane zmienne zostają między skryptami
+2. Można zadeklarować tylko raz silnie typowaną zmienną
+3. Rozwiązanie: tworzyć evaluator przed kazdym uruchomieniem skryptu lub czyścić tablicę zmiennych.
+
+Przykładowe Skrypty:
+
+------------------------------------------
+result = "";
+
+for(x = 0; x < 5;x++)
+{
+    result += $"{x},";
+}
+
+result.Remove(result.Length - 1);
+------------------------------------------
+Add = (x, y) => x + y;
+
+return Add(3, 4);
+------------------------------------------
+SayHelloTo = (name) =>
+{
+    hello = "Hye";
+    return $"{hello} {name}";
+};
+
+SayHelloTo("Joe");
+------------------------------------------
+List("hello", "bye").Select(x => x.ToUpper()).ToList().FluentAdd("test").FluidForEach(t => Console.WriteLine(t)).Count;
+------------------------------------------
+
+Nie działa
+------------------------------------------
+string result = "";
+
+WriteLine = (line) => {
+	result += $"{line}\n";
+}
+
+count = List("hello", "bye")
+	.Select(x => x.ToUpper())
+	.ToList()
+	.FluentAdd("test")
+	.FluidForEach(WriteLine)
+	.Count;
+
+result;
+------------------------------------------
+
+Działa
+------------------------------------------
+string result = "";
+
+count = List("hello", "bye")
+	.Select(x => x.ToUpper())
+	.ToList()
+	.FluentAdd("test")
+	.FluidForEach(v => {
+		result += $"{v}\n";
+	})
+	.Count;
+
+result += count;
+------------------------------------------
+
+x = new ExpandoObject()
+{
+	Hello = 3,
+	No = "Yes"
+};
+
+x;
+------------------------------------------
+array = new int[] {1, 2, 3};
+------------------------------------------
+https://dotnetfiddle.net/LiqyDn
+------------------------------------------
