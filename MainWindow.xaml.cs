@@ -25,8 +25,8 @@ namespace ExpressionsDemo
             validationField3.Text = "(Field3 >= Field2.Value.Length) AND (Field3 < Field2.Value.Length + 2)";
 
             enabledField1.Text = "true";
-            enabledField2.Text = "Field1 = \"Jhon\" OR Field1 = \"Stefan\"";
-            enabledField3.Text = "Field1 = \"Jhon\" AND Field2 = \"Doe\"";
+            enabledField2.Text = "Field1 = \"John\" OR Field1 = \"Stefan\"";
+            enabledField3.Text = "Field1 = \"John\" AND Field2 = \"Doe\"";
 
             var variables = new Dictionary<string, object>()
             {
